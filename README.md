@@ -11,15 +11,15 @@ Listener ports are configrable via enviro variables:
 If no value is set in the variables, random ports in range 50000-60000 will be assigned to allow the container to start.
 
 
-Example docker run command:
+Example docker run command to listen on ports 80 and 443:
 ```
 #!/bin/bash
 
 CONTAINER_IMAGE='jono85/nginx-dummy-healthcheck:latest'
 CONTAINER_NAME='nginxdummy'
 
-NON_SSL_PORT=40080
-SSL_PORT=40443
+NON_SSL_PORT=80
+SSL_PORT=443
 
 docker run \
 	--name $CONTAINER_NAME \
@@ -28,6 +28,5 @@ docker run \
 	-p $SSL_PORT:$SSL_PORT \
 	-e DUMMY_SERVER_PORT=$NON_SSL_PORT \
 	-e DUMMY_SERVER_SSL_PORT=$SSL_PORT \
-	-v ./app:/app \
 	$CONTAINER_IMAGE
 ```
